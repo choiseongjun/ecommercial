@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import go.shop.com.product.domain.BikeInfoEngine;
 import go.shop.com.product.domain.Product;
 import go.shop.com.product.repository.ProductRepository;
 
@@ -27,9 +28,13 @@ public class ProductController {
 	@PostMapping("/insert")
 	public Product createProduct(@RequestBody Product product) {
 		
-		System.out.println("Product List+++++++++");
-		System.out.println(product);
-		return null;
+		System.out.println(product.getBikeCc());
+		System.out.println(product.getBikeName());
+		System.out.println(product.getBikeBrand());
+		System.out.println(product.getBikeOrigPrice());
+		
+		productRepository.save(product);
+		return product;
 		//return productRepository.save(product);
 	}
 	

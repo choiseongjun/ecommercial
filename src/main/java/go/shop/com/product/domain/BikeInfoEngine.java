@@ -29,21 +29,21 @@ public class BikeInfoEngine {
 	private Long bikeInfoEngineSeq;
 	
 	@Column(name="bikeinfo_engine")
-	private String Engine;
+	private String bikeEngine;
 	@Column(name="bikeinfo_bore")
-	private String Bore;
+	private String bikeBore;
 	@Column(name="bikeinfo_stroke")
-	private String Stroke;
+	private String bikeStroke;
 	@Column(name="bikeinfo_displacement")
-	private String Displacement;
+	private String bikeDisplacement;
 	@Column(name="bikeinfo_compressionratio")
-	private String CompressionRatio;
+	private String bikeCompressionRatio;
 	@Column(name="bikeinfo_fuelsystem")
-	private String FuelSystem;
+	private String bikeFuelSystem;
 	@Column(name="bikeinfo_exhaust")
-	private String Exhaust;
+	private String bikeExhaust;
 	@Column(name="bikeinfo_transmission")
-	private String Transmission;
+	private String bikeTransmission;
 	@OneToOne
 	@JoinColumn(name = "bike_seq")
 	private Product product;
