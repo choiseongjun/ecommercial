@@ -6,6 +6,7 @@ import { addProduct } from '../../../action/productActions';
 class adminproductinsert extends Component{
   constructor(props){
       super(props);
+      console.log(props);
       this.onbikeNameChange = this.onbikeNameChange.bind(this);
       this.onbikeCcChange=this.onbikeCcChange.bind(this);
       this.onbikeBrandChange=this.onbikeBrandChange.bind(this);
@@ -79,6 +80,7 @@ onbikeBoreChange(e){
   onSubmit = (e) => {
     e.preventDefault();
     const product=this.state;
+
     console.log(product);
     this.props.addProduct(product);
 
