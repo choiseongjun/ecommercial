@@ -26,6 +26,7 @@ import productdetail from '../components/product/productdetail';
 import chatroom from '../components/user/chat/chatroom';
 import userlist from '../components/user/chat/userlist';
 import usertimeline from '../components/user/chat/usertimeline';
+import boardwrite from '../components/board/boardwrite';
 
 
 
@@ -105,7 +106,8 @@ class App extends Component {
                 <Route path="/chatroom" component={chatroom}></Route>
                 <Route path="/userlist" component={userlist}></Route>
                 <Route path="/usertimeline" component={usertimeline}></Route>
-                <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>  
+                <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route> 
+                <Route path="/boardwrite" component={boardwrite}>></Route> 
                 <Route component={NotFound}></Route>
               </Switch>
             </div>

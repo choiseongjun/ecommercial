@@ -25,6 +25,8 @@ public class ProductController {
 	@Autowired
 	ProductRepository productRepository;
 	
+	
+	
 	@PostMapping("/insert")
 	public Product createProduct(@RequestBody Product product) {
 		

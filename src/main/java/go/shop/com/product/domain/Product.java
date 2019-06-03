@@ -50,5 +50,5 @@ public class Product {
 	@OneToOne(mappedBy = "product")
 	private BikeInfoEngine bikeInfoEngine;
 	
-
+ 
 }
