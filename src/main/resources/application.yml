@@ -1,8 +1,8 @@
 spring:
     datasource:
-        url: jdbc:mariadb://e-com.ckzlr3hjcfba.ap-northeast-1.rds.amazonaws.com:3306/ecom
-        username: estudy
-        password: tjdwns2702
+        url: 
+        username: 
+        password: 
 
     jpa:
         show-sql: true
@@ -18,22 +18,22 @@ spring:
         client:
           registration:
             google:
-              clientId: 5014057553-8gm9um6vnli3cle5rgigcdjpdrid14m9.apps.googleusercontent.com
-              clientSecret: tWZKVLxaD_ARWsriiiUFYoIk
+              clientId: 
+              clientSecret: 
               redirectUriTemplate: "{baseUrl}/oauth2/callback/{registrationId}"
               scope:
                 - email
                 - profile
             facebook:
-              clientId: 962879493891298
-              clientSecret: a8c54f74bc5b41772e079e9d951747ba
+              clientId: 
+              clientSecret:
               redirectUriTemplate: "{baseUrl}/oauth2/callback/{registrationId}"
               scope:
                 - email
                 - public_profile
             github:
-              clientId: d3e47fc2ddd966fa4352
-              clientSecret: 3bc0f6b8332f93076354c2a5bada2f5a05aea60d
+              clientId: 
+              clientSecret: 
               redirectUriTemplate: "{baseUrl}/oauth2/callback/{registrationId}"
               scope:
                 - user:email
@@ -61,9 +61,9 @@ app:
 mail:
     host: smtp.gmail.com
     port: 587
-    username: choisjjunjun2702@gmail.com
-    password: tjdwns2702!
-    protocol: smtp
+    username: 
+    password: 
+    protocol: 
     default-encoding: UTF-8
     smtp: 
       start-tls-enable: true 
