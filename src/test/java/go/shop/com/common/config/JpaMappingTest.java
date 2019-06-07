@@ -14,7 +14,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import go.shop.com.board.domain.DealBoard;
 import go.shop.com.board.domain.DealBoardFile;
+import go.shop.com.board.domain.DealBoardReply;
 import go.shop.com.board.repository.DealBoardFileRepository;
+import go.shop.com.board.repository.DealBoardReplyRepository;
 import go.shop.com.board.repository.DealBoardRepository;
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -27,6 +29,9 @@ public class JpaMappingTest {
 	DealBoardRepository dealBoardRepository;
 	@Autowired
 	DealBoardFileRepository dealBoardFileRepository;
+	@Autowired
+	DealBoardReplyRepository dealBoardReplyRepository;
+	
 	@Test
 	public void create() {
 
@@ -35,12 +40,17 @@ public class JpaMappingTest {
 //			dealboard.setDealbrdno(i);
 //			dealBoardRepository.save(dealboard);
 //		}
-		DealBoardFile dealboardFile=new DealBoardFile(1L,dealboard, "Testdata3", "Testdata3", 60L, "TestPath3", "png");
-//		dealBoardRepository.save(dealboard);
+		//DealBoardFile dealboardFile=new DealBoardFile(2L,dealboard, "Testdata3", "Testdata3", 60L, "TestPath3", "png");
+		DealBoardReply dealBoardReply=new DealBoardReply(1L, "csj", "Y", "3번째 댓글", 0, 0, 0, dealboard);
+		//		dealBoardRepository.save(dealboard);
 //		dealBoardFileRepository.save(dealboardFile);		
-		for(long i=20;i<=25;i++) {
-			dealboardFile.setFileno(i);
-			dealBoardFileRepository.save(dealboardFile);			
+//		for(long i=20;i<=25;i++) {
+//			dealboardFile.setFileno(i);
+//			dealBoardFileRepository.save(dealboardFile);			
+//		}
+		for(long i=11;i<=15;i++) {
+			dealBoardReply.setBrdreno(i);
+			dealBoardReplyRepository.save(dealBoardReply);			
 		}
 	}
 //	@Test

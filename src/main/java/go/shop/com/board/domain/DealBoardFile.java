@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import go.shop.com.common.model.audit.DateAudit;
 import lombok.Data;
 
 /**
@@ -19,7 +20,7 @@ import lombok.Data;
 @Entity
 @Table(name="tb_dealboardfile")
 
-public class DealBoardFile {
+public class DealBoardFile extends DateAudit{
 
 	 @Id
 	 @Column(name = "dealboardfile_seq")

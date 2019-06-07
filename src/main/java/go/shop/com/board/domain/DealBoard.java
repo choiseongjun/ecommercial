@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import go.shop.com.common.model.audit.DateAudit;
 import lombok.Getter;
 import lombok.Setter;
 /**
@@ -25,7 +26,7 @@ import lombok.Setter;
 @Entity
 @Table(name="tb_dealboard")
 
-public class DealBoard {
+public class DealBoard extends DateAudit{
 	
 
 	 //private String bgno;//寃뚯떆�뙋 洹몃９ �꽆踰�..�씪�떒 �굹以묒뿉 �벐�뒗嫄몃줈..

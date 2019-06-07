@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import go.shop.com.common.model.audit.DateAudit;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +15,7 @@ import lombok.Setter;
 @Table(name="tb_account")
 @Getter
 @Setter
-public class Account {
+public class Account extends DateAudit{
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
