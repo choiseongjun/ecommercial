@@ -1,7 +1,27 @@
 import React,{ Component }  from 'react';
 import './productlist.css';
 import { Link, NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { list_dealBoard } from '../../action/productActions';
+
 class productlist extends Component{
+constructor(props){
+      super(props);
+    console.log(props); 
+    this.componentDidMount=this.componentDidMount.bind(this);
+    this.state = {
+            dealbrdno: '',
+            brdtitle:'',
+            brdwriter:'',
+            brdhit:''
+       
+ 
+        };
+    }
+       componentDidMount(){
+            
+            this.props.list_dealBoard();
+       }
 render() {
     return (
         <div class="main_content">
@@ -108,5 +128,7 @@ render() {
 
     }
 }
-
-export default productlist; 
+const mapStateToProps = (state) => ({
+  product: state.product
+})
+export default connect(mapStateToProps, { list_dealBoard })(productlist);

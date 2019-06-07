@@ -18,34 +18,101 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 /**
-* @author 최성준.
+* @author 理쒖꽦以�.
 * @version 2019.06.01 v1.0
-* @Story 중고거래 게시판..
+* @Story 以묎퀬嫄곕옒 寃뚯떆�뙋..
 */
 @Entity
 @Table(name="tb_dealboard")
-@Getter
-@Setter
+
 public class DealBoard {
 	
 
-	 //private String bgno;//게시판 그룹 넘버..일단 나중에 쓰는걸로..
+	 //private String bgno;//寃뚯떆�뙋 洹몃９ �꽆踰�..�씪�떒 �굹以묒뿉 �벐�뒗嫄몃줈..
 	 @Id
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 @Column(name = "dealboard_seq")
-	 private Long dealbrdno;//게시판 넘버..
+	 private Long dealbrdno;//寃뚯떆�뙋 �꽆踰�..
 	 @Column(name = "dealboard_title")
-	 private String brdtitle;//게시판 제목..
+	 private String brdtitle;//寃뚯떆�뙋 �젣紐�..
 	 @Column(name = "dealboard_write")
-	 private String brdwriter;//게시판 글쓴이..
+	 private String brdwriter;//寃뚯떆�뙋 湲��벖�씠..
 	 @Column(name = "dealboard_memo")
-	 private String brdmemo;//게시판  내용..
+	 private String brdmemo;//寃뚯떆�뙋  �궡�슜..
 	 @Column(name = "dealboard_brdhit")
-	 private String brdhit;//게시판 조회수..
+	 private String brdhit;//寃뚯떆�뙋 議고쉶�닔..
 	 @Column(name = "dealboard_deleteflag")
-	 private String brddeleteflag;//게시판 삭제여부..
+	 private String brddeleteflag;//寃뚯떆�뙋 �궘�젣�뿬遺�..
 	 @Column(name = "dealboard_filecnt")
-	 private String filecnt;//게시판 파일카운트..
+	 private String filecnt;//寃뚯떆�뙋 �뙆�씪移댁슫�듃..
+	public Long getDealbrdno() {
+		return dealbrdno;
+	}
+	public void setDealbrdno(Long dealbrdno) {
+		this.dealbrdno = dealbrdno;
+	}
+	public String getBrdtitle() {
+		return brdtitle;
+	}
+	public void setBrdtitle(String brdtitle) {
+		this.brdtitle = brdtitle;
+	}
+	public String getBrdwriter() {
+		return brdwriter;
+	}
+	public void setBrdwriter(String brdwriter) {
+		this.brdwriter = brdwriter;
+	}
+	public String getBrdmemo() {
+		return brdmemo;
+	}
+	public void setBrdmemo(String brdmemo) {
+		this.brdmemo = brdmemo;
+	}
+	public String getBrdhit() {
+		return brdhit;
+	}
+	public void setBrdhit(String brdhit) {
+		this.brdhit = brdhit;
+	}
+	public String getBrddeleteflag() {
+		return brddeleteflag;
+	}
+	public void setBrddeleteflag(String brddeleteflag) {
+		this.brddeleteflag = brddeleteflag;
+	}
+	public String getFilecnt() {
+		return filecnt;
+	}
+	public void setFilecnt(String filecnt) {
+		this.filecnt = filecnt;
+	}
+	public static Object builder() {
+
+		return null;
+	}
+	@Override
+	public String toString() {
+		return "DealBoard [dealbrdno=" + dealbrdno + ", brdtitle=" + brdtitle + ", brdwriter=" + brdwriter
+				+ ", brdmemo=" + brdmemo + ", brdhit=" + brdhit + ", brddeleteflag=" + brddeleteflag + ", filecnt="
+				+ filecnt + "]";
+	}
+	public DealBoard(Long dealbrdno, String brdtitle, String brdwriter, String brdmemo, String brdhit,
+			String brddeleteflag, String filecnt) {
+		super();
+		this.dealbrdno = dealbrdno;
+		this.brdtitle = brdtitle;
+		this.brdwriter = brdwriter;
+		this.brdmemo = brdmemo;
+		this.brdhit = brdhit;
+		this.brddeleteflag = brddeleteflag;
+		this.filecnt = filecnt;
+	}
+	public DealBoard() {
+		// TODO Auto-generated constructor stub
+	}
+	
+
 	 
 
 

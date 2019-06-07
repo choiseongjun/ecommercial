@@ -2,10 +2,12 @@ package go.shop.com.board.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import go.shop.com.board.domain.DealBoard;
+import go.shop.com.board.domain.DealBoardFile;
+import go.shop.com.board.repository.DealBoardFileRepository;
 import go.shop.com.board.repository.DealBoardRepository;
 /**
 * @author 최성준.
@@ -24,10 +28,12 @@ import go.shop.com.board.repository.DealBoardRepository;
 @RestController
 @RequestMapping("/dealboard")
 public class DealBoardController {
-
+	  private final static Logger LOG = Logger.getGlobal();
 	@Autowired
 	DealBoardRepository dealBoardRepository;
-
+	@Autowired
+	DealBoardFileRepository dealBoardFileRepository;
+	
 	@PostMapping("/insert")
 	public DealBoard createDealBoard(@RequestBody DealBoard dealBoard) {
 		return dealBoard;
@@ -35,9 +41,8 @@ public class DealBoardController {
 	@GetMapping("/list")
 	public List<DealBoard> getAllDealBoard(){
 		
-		List<DealBoard> dealboardlist=dealBoardRepository.findAll();
+		List<DealBoard> dealboardlist=dealBoardRepository.findByboardAll();
 		
-		dealboardlist.forEach(dealboardlist::add);
 		return dealboardlist;
 	}
 	
