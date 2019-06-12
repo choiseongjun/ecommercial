@@ -16,14 +16,14 @@ export const addProduct = (product) => dispatch => {
 function list_dealBoard () {
   return (dispatch)=>axios.get(`http://localhost:8080/dealboard/list`)
   // return axios.get(`${basePath}/users.json`)
-   .then(res =>
+   .then(item =>
       dispatch({
         type: LIST_DEALBOARD,
-        payload: res,
+        payload: item.data,
       })
     )  
 }
-;export {
+export {
   list_dealBoard
 }
 

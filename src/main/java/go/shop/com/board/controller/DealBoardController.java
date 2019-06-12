@@ -41,8 +41,8 @@ public class DealBoardController {
 	@GetMapping("/list")
 	public List<DealBoard> getAllDealBoard(){
 		
-		List<DealBoard> dealboardlist=dealBoardRepository.findByboardAll();
-		
+		//List<DealBoard> dealboardlist=dealBoardRepository.findByboardAll();
+		List<DealBoard> dealboardlist=dealBoardRepository.findAll();
 		return dealboardlist;
 	}
 	

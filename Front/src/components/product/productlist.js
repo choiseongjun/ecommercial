@@ -9,12 +9,11 @@ constructor(props){
       super(props);
     let boards=[];
     this.props.list_dealBoard();
-    console.log(this.props.list_dealBoard());
-    console.log(this.props);
     this.componentDidMount=this.componentDidMount.bind(this);
     this.state = {
             boards:[]
              ,brdtitle:''
+             ,item:[]
         };
         
     }
@@ -24,11 +23,12 @@ constructor(props){
        }
 render() {
     const {boards}=this.props.product.products;
-    console.log(this.props.product.products.Object);
-    
+
+    console.log(this.props.product);
+
     return (
-        
 		<table class="table table-striped table-bordered table-hover">
+     
         <caption>중고거래게시판</caption>
         <thead>
             <tr>
@@ -40,13 +40,14 @@ render() {
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>데이터3</td>
-                <td>데이터4</td>
-                <td>데이터5</td>
-            </tr>
+
+            {/* {this.props.product.products.map((item,index) => {   return <tr key={index }><td>{item}</td></tr>})} */}
+    {this.props.product.products.length== 0 ?  null : this.props.product.products.map(() => {
+            return <tr>
+                    <td>{}</td>
+               
+                 </tr>})}
+
            
         </tbody>
     </table>
