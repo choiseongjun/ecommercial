@@ -8,20 +8,24 @@ class productlist extends Component{
 constructor(props){
       super(props);
     let boards=[];
+    this.props.list_dealBoard();
+    console.log(this.props.list_dealBoard());
+    console.log(this.props);
     this.componentDidMount=this.componentDidMount.bind(this);
     this.state = {
             boards:[]
+             ,brdtitle:''
         };
         
     }
        componentDidMount(){
-                console.log(this.props.list_dealBoard())
-            this.props.list_dealBoard();
+             
+      
        }
 render() {
-    console.log(boards);
     const {boards}=this.props.product.products;
-    console.log(this.props.product.products);
+    console.log(this.props.product.products.Object);
+    
     return (
         
 		<table class="table table-striped table-bordered table-hover">
