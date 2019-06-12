@@ -32,9 +32,9 @@ render() {
         <caption>중고거래게시판</caption>
         <thead>
             <tr>
-                <th>#</th>
-                <th>컬럼2</th>
-                <th>컬럼3</th>
+                <th>순서</th>
+                <th>제목</th>
+                <th>작성자</th>
                 <th>컬럼4</th>
                 <th>컬럼5</th>
             </tr>
@@ -42,10 +42,11 @@ render() {
         <tbody>
 
             {/* {this.props.product.products.map((item,index) => {   return <tr key={index }><td>{item}</td></tr>})} */}
-    {this.props.product.products.length== 0 ?  null : this.props.product.products.map(() => {
-            return <tr>
-                    <td>{}</td>
-               
+    {this.props.product.products.length== 0 ?  null : this.props.product.products[0].map((item,index) => {
+            return <tr key={index}>
+              <td>{item.dealbrdno}</td>
+                    <td>{item.brdtitle}</td>
+                    <td>{item.brdwriter}</td>
                  </tr>})}
 
            
