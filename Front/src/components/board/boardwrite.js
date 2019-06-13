@@ -1,57 +1,76 @@
 import React, { Component } from 'react';
-import { API_BASE_URL } from '../../constants';
-import { Redirect } from 'react-router-dom'
+import {adddealBoard}  from '../../action/dealboardActions';
+import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 class boardwrite extends Component{
-
-
-
-
-    _boardWrite = () =>{
-        let title   = document.getElementById('title').value;
-        let content = document.getElementById('content').value;
-        
-        fetch(API_BASE_URL+'/board/post'
-            ,{
-                "method": 'post'
-                ,headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                } 
-                ,"body":JSON.stringify({
-                    board_title : title
-                    ,board_content : content
-                })
-            }).then(response =>{
-                if (response.ok) {
-                    alert('저장에 성공하였습니다.');
-                    window.location.href='/board';
-                }else{
-                    alert('저장에 실패하였습니다.');    
-                }
-            }).catch(err=>{
-                alert('오류가 발생하였습니다.');
-                console.log(err);
-            })
+    constructor(props){
+        super(props);
+        console.log(this.props);
+        this.onbrdtitleChange=this.onbrdtitleChange.bind(this);
+        this.onbrdmemoChange=this.onbrdmemoChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+        this.state = {
+            brdtitle: '',
+            brdmemo:'',
+            brdwriter: this.props.currentUser.email
+        };
+      
     }
+    onbrdtitleChange(e){
+        const brdtitle=e.target.value;
+        this.setState(() => ({ brdtitle: brdtitle }));
+      }
+      onbrdmemoChange(e){
+        const brdmemo=e.target.value;
+        this.setState(() => ({ brdmemo: brdmemo }));
+      }
+    onSubmit = (e) => {
+        e.preventDefault();
+        const dealboard=this.state;
+    
+        console.log(dealboard);
+
+        this.props.adddealBoard(dealboard);
+  
+        this.props.history.push('/dealboardlist');     
+     
+        // Add item via addItem action
+    
+    
+        // Close Modal
+    
+      }
+
 
     render(){
+        
         return(
+        <form className="form-horizontal" onSubmit={this.onSubmit}>
             <div className="div-form">
                 <h2>Vertical (basic) form</h2>
                 <div className="form-group">
                     <label >제목</label>
-                    <input type="title" className="form-control" id="title" placeholder="Enter email" name="email"/>
+                    <input type="title" className="form-control" id="brdtitle" placeholder="Enter email" name="email"
+                      value={this.state.brdtitle}
+                      onChange={this.onbrdtitleChange}/>
                 </div>
                 <div className="form-group">
                     <label >내용</label>
-                    <textarea className="form-control" rows="5" id="content"></textarea>
+                    <textarea className="form-control" rows="5" id="content"
+                    value={this.state.brdmemo}
+                    onChange={this.onbrdmemoChange}></textarea>
                 </div>
                 <div className="div-button">
-                    <button type="button" className="btn btn-primary" onClick={this._boardWrite}>Submit</button>
+                    <button type="submit" className="btn btn-primary" onClick={this._boardWrite}>Submit</button>
                 </div>
             </div>
+        </form>
         );
     }
 }
 
-export default boardwrite;
+const mapStateToProps = (state) => ({
+    dealboard: state.dealboard
+  })
+  
+  export default connect(mapStateToProps, { adddealBoard })(boardwrite);

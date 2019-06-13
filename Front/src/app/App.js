@@ -8,7 +8,7 @@ import Footer from '../common/Footer';
 import Home from '../home/Home';
 import Login from '../components/user/login/Login';
 import Signup from '../components/user/signup/Signup';
-import board  from '../components/board/board'
+import dealboardlist  from '../components/board/dealboardlist'
 import Profile from '../components/user/profile/Profile';
 import OAuth2RedirectHandler from '../components/user/oauth2/OAuth2RedirectHandler';
 import NotFound from '../common/NotFound';
@@ -99,7 +99,7 @@ class App extends Component {
                   render={(props) => <Login authenticated={this.state.authenticated} {...props} />}></Route>
                 <Route path="/signup"
                   render={(props) => <Signup authenticated={this.state.authenticated} {...props} />}></Route>
-                <Route path="/board" component={board}></Route>
+                <Route path="/dealboardlist" component={dealboardlist}></Route>
                 <Route path="/productlist" component={productlist}></Route>
                 <Route path="/productdetail" component={productdetail}></Route>
                 <Route path="/adminproductinsert" component={adminproductinsert}></Route>
@@ -107,7 +107,8 @@ class App extends Component {
                 <Route path="/userlist" component={userlist}></Route>
                 <Route path="/usertimeline" component={usertimeline}></Route>
                 <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route> 
-                <Route path="/boardwrite" component={boardwrite}>></Route> 
+                <PrivateRoute path="/boardwrite" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+                 component={boardwrite}>></PrivateRoute> 
                 <Route component={NotFound}></Route>
               </Switch>
             </div>

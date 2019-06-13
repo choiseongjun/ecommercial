@@ -13,11 +13,7 @@ export default function(state = initialState, action) {
         ...state,
         products: [action.payload, ...state.products]
       }
-    case LIST_DEALBOARD:
-        return {
-            ...state,
-            products: [action.payload, ...state.products]
-        }
+   
     default:
       return state;
   }

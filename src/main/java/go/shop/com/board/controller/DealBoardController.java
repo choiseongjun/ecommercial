@@ -36,6 +36,8 @@ public class DealBoardController {
 	
 	@PostMapping("/insert")
 	public DealBoard createDealBoard(@RequestBody DealBoard dealBoard) {
+		dealBoardRepository.save(dealBoard);
+		LOG.info(dealBoard.toString());
 		return dealBoard;
 	}
 	@GetMapping("/list")

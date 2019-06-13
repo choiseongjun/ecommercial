@@ -212,7 +212,7 @@ class AppNavigator extends Component {
                                 <li><a href="/">HOME</a></li>
                                 <li><NavLink to="adminproductinsert">판매</NavLink></li>
                                 <li><NavLink to="/boardwrite">커뮤니티</NavLink></li>
-                                <li><NavLink to="/productlist">리뷰</NavLink></li>
+                                <li><NavLink to="/dealboardlist">중고거래게시판</NavLink></li>
                                 <li><a href="/">blog</a></li>
                                 
                                 <li><NavLink to="/userlist">유저리스트(웹소켓테스트)</NavLink></li>

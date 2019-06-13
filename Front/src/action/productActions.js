@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { ADD_PRODUCT,LIST_DEALBOARD} from './types';
+import { ADD_PRODUCT} from './types';
 
 
 
-export const addProduct = (product) => dispatch => {
+export const addProduct = (dealboard) => dispatch => {
   axios
-    .post('http://localhost:8080/product/insert',product)
+    .post('http://localhost:8080/dealboard/insert',dealboard)
     .then(res =>
       dispatch({
         type: ADD_PRODUCT,
@@ -13,17 +13,5 @@ export const addProduct = (product) => dispatch => {
       })
     )
 }
-function list_dealBoard () {
-  return (dispatch)=>axios.get(`http://localhost:8080/dealboard/list`)
-  // return axios.get(`${basePath}/users.json`)
-   .then(item =>
-      dispatch({
-        type: LIST_DEALBOARD,
-        payload: item.data,
-      })
-    )  
-}
-export {
-  list_dealBoard
-}
+
 
