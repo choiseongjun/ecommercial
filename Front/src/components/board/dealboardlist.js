@@ -2,8 +2,6 @@ import React,{ Component }  from 'react';
 import './dealboardlist.css';
 import { connect } from 'react-redux';
 import { list_dealBoard } from '../../action/dealboardActions';
-import { NavLink } from 'react-router-dom';
-import {Route} from 'react-router-dom';
 import dealboarddetail from './dealboarddetail';
 import { Link } from "react-router-dom";
 
@@ -11,7 +9,7 @@ class dealboardlist extends Component{
 constructor(props){
       super(props);
  
-    
+
     this.state = {
            
         };
@@ -19,12 +17,14 @@ constructor(props){
     }
     componentDidMount(){
         this.props.list_dealBoard();
+        
     }
       
 render() {
   
 
-    console.log(this.props);
+    console.log(this.props.dealboard.dealboard.dealbrdno);
+
     const dealboard=this.props.dealboard.dealboard[0];
  
     console.log(dealboard)

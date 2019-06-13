@@ -33,13 +33,14 @@ public class DealBoardController {
 	DealBoardRepository dealBoardRepository;
 	@Autowired
 	DealBoardFileRepository dealBoardFileRepository;
-	
+	/*게시판 글쓰기  */
 	@PostMapping("/insert")
 	public DealBoard createDealBoard(@RequestBody DealBoard dealBoard) {
 		dealBoardRepository.save(dealBoard);
 		LOG.info(dealBoard.toString());
 		return dealBoard;
 	}
+	/*게시판 리스 페이지 조회 */
 	@GetMapping("/list")
 	public List<DealBoard> getAllDealBoard(){
 		
@@ -47,7 +48,23 @@ public class DealBoardController {
 		List<DealBoard> dealboardlist=dealBoardRepository.findAll();
 		return dealboardlist;
 	}
-	
+	/*게시판 디테일 페이지 조회 */
+	@GetMapping("/detail/{dealbrdno}")
+	public Optional<DealBoard> getSelectOneBoard(@PathVariable("dealbrdno") Long dealbrdno){
+		
+		System.out.println("경로 체크..!!@#@!#@!$@!$!@");
+		
+		Optional<DealBoard> dealboardlist=dealBoardRepository.findById(dealbrdno);
+		
+		LOG.info(dealboardlist.toString());
+		
+		return dealboardlist;
+//		if(dealboardlist.isPresent()) {
+//			return new ResponseEntity<>(HttpStatus.OK);
+//		}else {
+//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//		}
+	}
 	
 	@PostMapping("/update/{id}")
 	public ResponseEntity<DealBoard> updateDealBoard(@PathVariable("id") Long id,@RequestBody DealBoard DealBoard){

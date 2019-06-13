@@ -110,7 +110,7 @@ class App extends Component {
                 <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route> 
                 <PrivateRoute path="/dealboardwrite" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
                  component={dealboardwrite}>></PrivateRoute> 
-                <Route path="/dealboarddetail" component={dealboarddetail}></Route> 
+                <Route path="/dealboarddetail/:id" component={dealboarddetail}></Route> 
                 <Route component={NotFound}></Route>
               </Switch>
             </div>

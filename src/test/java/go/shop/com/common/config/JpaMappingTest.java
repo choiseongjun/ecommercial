@@ -32,44 +32,48 @@ public class JpaMappingTest {
 	@Autowired
 	DealBoardReplyRepository dealBoardReplyRepository;
 	
-	@Test
-	public void create() {
-
-		DealBoard dealboard = new DealBoard(3L, "TestTitle", "TestWriter", "Test", "1", "Y", "1");
-//		for(long i=2;i<10;i++) {
-//			dealboard.setDealbrdno(i);
-//			dealBoardRepository.save(dealboard);
-//		}
-		//DealBoardFile dealboardFile=new DealBoardFile(2L,dealboard, "Testdata3", "Testdata3", 60L, "TestPath3", "png");
-		DealBoardReply dealBoardReply=new DealBoardReply(1L, "csj", "Y", "3번째 댓글", 0, 0, 0, dealboard);
-		//		dealBoardRepository.save(dealboard);
-//		dealBoardFileRepository.save(dealboardFile);		
-//		for(long i=20;i<=25;i++) {
-//			dealboardFile.setFileno(i);
-//			dealBoardFileRepository.save(dealboardFile);			
-//		}
-		for(long i=11;i<=15;i++) {
-			dealBoardReply.setBrdreno(i);
-			dealBoardReplyRepository.save(dealBoardReply);			
-		}
-	}
 //	@Test
-//	public void select() {
-//		DealBoard dealBoard=new DealBoard();
-//		int a=2;
-//		long b=1L;
-//		List<DealBoard> dealboardlist=dealBoardRepository.findByjoinId(1L);
-//		List<DealBoard> dealboardlist1=dealBoardRepository.findAll();
-//		//Optional<DealBoardFile> dealBoardfilelist=dealBoardFileRepository.findById(a);
-//		//LOG.info(dealboardlist.toString());
-//		List<DealBoard> dealboardlist2=dealBoardRepository.findByboardAll();
-//		
-//		LOG.info(dealboardlist.toString());
+//	public void create() {
+//
+//		DealBoard dealboard = new DealBoard(3L, "TestTitle", "TestWriter", "Test", "1", "Y", "1");
+////		for(long i=2;i<10;i++) {
+////			dealboard.setDealbrdno(i);
+////			dealBoardRepository.save(dealboard);
+////		}
+//		//DealBoardFile dealboardFile=new DealBoardFile(2L,dealboard, "Testdata3", "Testdata3", 60L, "TestPath3", "png");
+//		DealBoardReply dealBoardReply=new DealBoardReply(1L, "csj", "Y", "3번째 댓글", 0, 0, 0, dealboard);
+//		//		dealBoardRepository.save(dealboard);
+////		dealBoardFileRepository.save(dealboardFile);		
+////		for(long i=20;i<=25;i++) {
+////			dealboardFile.setFileno(i);
+////			dealBoardFileRepository.save(dealboardFile);			
+////		}
+//		for(long i=11;i<=15;i++) {
+//			dealBoardReply.setBrdreno(i);
+//			dealBoardReplyRepository.save(dealBoardReply);			
+//		}
+//	}
+	@Test
+	public void select() {
+		DealBoard dealBoard=new DealBoard();
+		int a=2;
+		long b=1L;
+		//List<DealBoard> dealboardlist=dealBoardRepository.findByjoinId(1L);
+		//List<DealBoard> dealboardlist1=dealBoardRepository.findAll();
+		//Optional<DealBoardFile> dealBoardfilelist=dealBoardFileRepository.findById(a);
+		//LOG.info(dealboardlist.toString());
+		//List<DealBoard> dealboardlist2=dealBoardRepository.findByboardAll();
+		
+		Optional<DealBoard> dealboardlist=dealBoardRepository.findById(1L);
+		
+		System.out.println(dealboardlist.toString());
+	
+		LOG.info(dealboardlist.toString());
 //		LOG.info(dealboardlist1.toString());
 //		LOG.info(dealboardlist2.toString());
-//			
-//
-//	}
+			
+
+	}
 
 //	@Test
 //	public void delete() {

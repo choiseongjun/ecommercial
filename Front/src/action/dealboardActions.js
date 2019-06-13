@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ADD_DEALBOARD,LIST_DEALBOARD} from './types';
+import { ADD_DEALBOARD,LIST_DEALBOARD,SELECTONE_DEALBOARD} from './types';
 
 export const adddealBoard = (dealBoard) => dispatch => {
   axios
@@ -21,8 +21,18 @@ function list_dealBoard () {
         })
       )  
   }
+function selectone_dealBoard (dealboard) {
+    return (dispatch)=>axios.get(`http://localhost:8080/dealboard/detail/`+dealboard)
+     .then(item =>
+        dispatch({
+          type: SELECTONE_DEALBOARD,
+          payload: item.data,
+        })
+      )  
+  }
   export {
     list_dealBoard
+    ,selectone_dealBoard
   }
   
   

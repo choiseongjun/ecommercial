@@ -1,18 +1,24 @@
 import React,{ Component }  from 'react';
+import { selectone_dealBoard } from '../../action/dealboardActions';
+import { connect } from 'react-redux';
+
 
 class dealboarddetail extends Component{
     constructor(props){
       super(props);
- 
-    
+        console.log(this.props)
+      
     this.state = {
-           
+            dealbrdno : this.props.match.params.id
         };
-        
+       
     }
+
     componentDidMount (){
         console.log('상세페이지...')
-        console.log(this.props)
+ 
+        this.props.selectone_dealBoard(this.state.dealbrdno);
+        
     }
       
     render(){
@@ -24,7 +30,7 @@ class dealboarddetail extends Component{
                 <div className="form-group">
                     <label >제목</label>
                     <input type="title" className="form-control" id="brdtitle" placeholder="Enter email" name="email"
-                      value={this.state.brdtitle}
+                      value={this.props.dealboard.dealboard.brdtitle}
                       onChange={this.onbrdtitleChange}/>
                 </div>
                 <div className="form-group">
@@ -41,5 +47,11 @@ class dealboarddetail extends Component{
         );
     }
 }
+const mapStateToProps = (state) => ({
+    dealboard: state.dealboard
+})
+// const mapDispatchToProps = (dispatch) => ({
+//   list_dealBoard: bindActionCreators(list_dealBoard, dispatch),
+// });
 
-export default dealboarddetail;
+export default connect(mapStateToProps, { selectone_dealBoard })(dealboarddetail);
