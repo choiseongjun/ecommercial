@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {adddealBoard}  from '../../action/dealboardActions';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-class boardwrite extends Component{
+
+class dealboardwrite extends Component{
     constructor(props){
         super(props);
         console.log(this.props);
@@ -80,4 +80,4 @@ const mapStateToProps = (state) => ({
     dealboard: state.dealboard
   })
   
-  export default connect(mapStateToProps, { adddealBoard })(boardwrite);
+  export default connect(mapStateToProps, { adddealBoard })(dealboardwrite);

@@ -211,7 +211,7 @@ class AppNavigator extends Component {
                             <ul className="menu-list">
                                 <li><a href="/">HOME</a></li>
                                 <li><NavLink to="adminproductinsert">판매</NavLink></li>
-                                <li><NavLink to="/boardwrite">커뮤니티</NavLink></li>
+                                <li><NavLink to="/dealboardwrite">커뮤니티</NavLink></li>
                                 <li><NavLink to="/dealboardlist">중고거래게시판</NavLink></li>
                                 <li><a href="/">blog</a></li>
                                 

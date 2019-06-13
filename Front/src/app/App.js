@@ -26,7 +26,8 @@ import productdetail from '../components/product/productdetail';
 import chatroom from '../components/user/chat/chatroom';
 import userlist from '../components/user/chat/userlist';
 import usertimeline from '../components/user/chat/usertimeline';
-import boardwrite from '../components/board/boardwrite';
+import dealboardwrite from '../components/board/dealboardwrite';
+import dealboarddetail from '../components/board/dealboarddetail';
 
 
 
@@ -107,8 +108,9 @@ class App extends Component {
                 <Route path="/userlist" component={userlist}></Route>
                 <Route path="/usertimeline" component={usertimeline}></Route>
                 <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route> 
-                <PrivateRoute path="/boardwrite" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
-                 component={boardwrite}>></PrivateRoute> 
+                <PrivateRoute path="/dealboardwrite" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+                 component={dealboardwrite}>></PrivateRoute> 
+                <Route path="/dealboarddetail" component={dealboarddetail}></Route> 
                 <Route component={NotFound}></Route>
               </Switch>
             </div>

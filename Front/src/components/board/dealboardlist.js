@@ -3,6 +3,10 @@ import './dealboardlist.css';
 import { connect } from 'react-redux';
 import { list_dealBoard } from '../../action/dealboardActions';
 import { NavLink } from 'react-router-dom';
+import {Route} from 'react-router-dom';
+import dealboarddetail from './dealboarddetail';
+import { Link } from "react-router-dom";
+
 class dealboardlist extends Component{
 constructor(props){
       super(props);
@@ -21,11 +25,12 @@ render() {
   
 
     console.log(this.props);
-    const dealboard=this.props.dealboard.dealboard[0]
+    const dealboard=this.props.dealboard.dealboard[0];
+ 
     console.log(dealboard)
     return (
+
 		<table class="table table-striped table-bordered table-hover">
-     
         <caption>중고거래게시판</caption>
         <thead>
             <tr>
@@ -42,14 +47,14 @@ render() {
     {this.props.dealboard.dealboard.length== 0 ?  null : this.props.dealboard.dealboard[0].map((item,index) => {
             return <tr key={index}>
                     <td>{item.dealbrdno}</td>
-                    <td>{item.brdtitle}</td>
+                    <Link to={`dealboarddetail/${item.dealbrdno}`} component={dealboarddetail}><td> {item.brdtitle}</td></Link>
                     <td>{item.brdwriter}</td>
                     <td>{item.brdhit}</td>
                     <td>{item.createdAt}</td>
                  </tr>})}
 
            
-        </tbody><NavLink to="/boardwrite"><a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">작성하기</a></NavLink>
+        </tbody><a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">작성하기</a>
     </table>
     );
 
