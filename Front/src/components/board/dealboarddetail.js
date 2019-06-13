@@ -6,22 +6,24 @@ import { connect } from 'react-redux';
 class dealboarddetail extends Component{
     constructor(props){
       super(props);
-        console.log(this.props)
+      
       
     this.state = {
             dealbrdno : this.props.match.params.id
+           ,dealboardone:[]
+        
         };
        
     }
 
     componentDidMount (){
-        console.log('상세페이지...')
- 
         this.props.selectone_dealBoard(this.state.dealbrdno);
         
+       
     }
       
     render(){
+       
         
         return(
         <form className="form-horizontal" onSubmit={this.onSubmit}>
@@ -29,15 +31,16 @@ class dealboarddetail extends Component{
                 <h2>글내용</h2>
                 <div className="form-group">
                     <label >제목</label>
+                 
                     <input type="title" className="form-control" id="brdtitle" placeholder="Enter email" name="email"
-                      value={this.props.dealboard.dealboard.brdtitle}
-                      onChange={this.onbrdtitleChange}/>
+                      value={this.props.dealboard.dealboardone[0] == null ? null : this.props.dealboard.dealboardone[0].brdtitle}
+                      onChange={this.onbrdtitleChange}>{this.props.dealboard.dealboardone.brdmemo}</input>
                 </div>
                 <div className="form-group">
                     <label >내용</label>
                     <textarea className="form-control" rows="5" id="content"
-                    value={this.state.brdmemo}
-                    onChange={this.onbrdmemoChange}></textarea>
+                    value={this.props.dealboard.dealboardone[0] == null ? null : this.props.dealboard.dealboardone[0].brdmemo}
+                    onChange={this.onbrdmemoChange}>  </textarea>
                 </div>
                 <div className="div-button">
                     <button type="submit" className="btn btn-primary" onClick={this._boardWrite}>Submit</button>

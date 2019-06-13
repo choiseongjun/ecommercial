@@ -50,11 +50,11 @@ public class DealBoardController {
 	}
 	/*게시판 디테일 페이지 조회 */
 	@GetMapping("/detail/{dealbrdno}")
-	public Optional<DealBoard> getSelectOneBoard(@PathVariable("dealbrdno") Long dealbrdno){
+	public Object getSelectOneBoard(@PathVariable("dealbrdno") Long dealbrdno){
 		
 		System.out.println("경로 체크..!!@#@!#@!$@!$!@");
 		
-		Optional<DealBoard> dealboardlist=dealBoardRepository.findById(dealbrdno);
+		Object dealboardlist=dealBoardRepository.findById(dealbrdno);
 		
 		LOG.info(dealboardlist.toString());
 		

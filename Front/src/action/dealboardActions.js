@@ -23,10 +23,10 @@ function list_dealBoard () {
   }
 function selectone_dealBoard (dealboard) {
     return (dispatch)=>axios.get(`http://localhost:8080/dealboard/detail/`+dealboard)
-     .then(item =>
+     .then(oneitem =>
         dispatch({
-          type: SELECTONE_DEALBOARD,
-          payload: item.data,
+          type: SELECTONE_DEALBOARD, 
+          payload: oneitem.data,
         })
       )  
   }

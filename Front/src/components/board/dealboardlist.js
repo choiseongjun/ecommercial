@@ -23,8 +23,8 @@ constructor(props){
 render() {
   
 
-    console.log(this.props.dealboard.dealboard.dealbrdno);
-
+    console.log(this.props);
+ 
     const dealboard=this.props.dealboard.dealboard[0];
  
     console.log(dealboard)

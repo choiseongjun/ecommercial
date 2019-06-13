@@ -2,10 +2,15 @@ import { ADD_DEALBOARD,LIST_DEALBOARD,SELECTONE_DEALBOARD} from '../action/types
 
 const initialState = {
   dealboard: [],
+  dealboardone:{},
   loading: false
 }
 
 export default function(state = initialState, action) {
+
+  console.log("action start");
+  console.log(action)
+  console.log("action end");
   switch(action.type){
   
     case ADD_DEALBOARD:
@@ -21,9 +26,12 @@ export default function(state = initialState, action) {
     case SELECTONE_DEALBOARD:
         return {
             ...state,
-            dealboard:  [action.payload, ...state.dealboard]
+            dealboardone: [action.payload, ...state.dealboardone]
         }
+        
     default:
       return state;
+      
   }
+        
 }
