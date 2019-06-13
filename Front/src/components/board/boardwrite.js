@@ -12,7 +12,8 @@ class boardwrite extends Component{
         this.state = {
             brdtitle: '',
             brdmemo:'',
-            brdwriter: this.props.currentUser.email
+            brdwriter: this.props.currentUser.email,
+            brdhit:0
         };
       
     }
@@ -30,9 +31,15 @@ class boardwrite extends Component{
     
         console.log(dealboard);
 
-        this.props.adddealBoard(dealboard);
+        if(dealboard.brdtitle == ""){
+            alert("제목을 작성하세요")
+        }else{
+            this.props.adddealBoard(dealboard);
   
-        this.props.history.push('/dealboardlist');     
+            //this.props.history.push('/dealboardlist');     
+            window.location.href = '/dealboardlist'; 
+        }
+         
      
         // Add item via addItem action
     
@@ -47,7 +54,7 @@ class boardwrite extends Component{
         return(
         <form className="form-horizontal" onSubmit={this.onSubmit}>
             <div className="div-form">
-                <h2>Vertical (basic) form</h2>
+                <h2>글쓰기</h2>
                 <div className="form-group">
                     <label >제목</label>
                     <input type="title" className="form-control" id="brdtitle" placeholder="Enter email" name="email"

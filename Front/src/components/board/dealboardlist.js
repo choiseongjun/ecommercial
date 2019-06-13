@@ -3,23 +3,26 @@ import './dealboardlist.css';
 import { connect } from 'react-redux';
 import { list_dealBoard } from '../../action/dealboardActions';
 import { NavLink } from 'react-router-dom';
-class productlist extends Component{
+class dealboardlist extends Component{
 constructor(props){
       super(props);
  
-    this.props.list_dealBoard();
-  
+    
     this.state = {
            
         };
         
+    }
+    componentDidMount(){
+        this.props.list_dealBoard();
     }
       
 render() {
   
 
     console.log(this.props);
-
+    const dealboard=this.props.dealboard.dealboard[0]
+    console.log(dealboard)
     return (
 		<table class="table table-striped table-bordered table-hover">
      
@@ -59,4 +62,4 @@ const mapStateToProps = (state) => ({
 //   list_dealBoard: bindActionCreators(list_dealBoard, dispatch),
 // });
 
-export default connect(mapStateToProps, { list_dealBoard })(productlist);
+export default connect(mapStateToProps, { list_dealBoard })(dealboardlist);

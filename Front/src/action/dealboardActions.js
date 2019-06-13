@@ -14,7 +14,6 @@ export const adddealBoard = (dealBoard) => dispatch => {
 
 function list_dealBoard () {
     return (dispatch)=>axios.get(`http://localhost:8080/dealboard/list`)
-    // return axios.get(`${basePath}/users.json`)
      .then(item =>
         dispatch({
           type: LIST_DEALBOARD,
