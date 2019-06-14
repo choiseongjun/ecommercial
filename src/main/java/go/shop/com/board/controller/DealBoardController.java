@@ -80,10 +80,12 @@ public class DealBoardController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-	@DeleteMapping("/delete/{dealboard.id}")
-	  public ResponseEntity<String> deleteUser(@PathVariable("dealboard.id") Long id) {
-	    try {
-	    	dealBoardRepository.deleteById(id);
+	@DeleteMapping(value="/delete/{dealboard.id}")
+	  public ResponseEntity<String> deleteUser(@PathVariable("dealbrdno") Long dealbrdno) {
+		System.out.println("삭제 경로!!..");
+		try {
+	    	System.out.println("삭제 경로..");
+	    //	dealBoardRepository.deleteById(dealbrdno);
 	    } catch (Exception e) {
 	      return new ResponseEntity<>("Fail to delete!", HttpStatus.EXPECTATION_FAILED);
 	    }

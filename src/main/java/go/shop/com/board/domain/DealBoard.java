@@ -46,7 +46,12 @@ public class DealBoard extends DateAudit{
 	 private String brddeleteflag;//寃뚯떆�뙋 �궘�젣�뿬遺�..
 	 @Column(name = "dealboard_filecnt")
 	 private String filecnt;//寃뚯떆�뙋 �뙆�씪移댁슫�듃..
-	public Long getDealbrdno() {
+	 
+	 @OneToMany(mappedBy = "dealboard", orphanRemoval = true, cascade = CascadeType.PERSIST)
+	 private List<DealBoardFile> dealboardfile = new ArrayList<DealBoardFile>();
+	 @OneToMany(mappedBy = "dealboard", orphanRemoval = true, cascade = CascadeType.PERSIST)
+	 private List<DealBoardReply> dealboardreply = new ArrayList<DealBoardReply>();
+	 public Long getDealbrdno() {
 		return dealbrdno;
 	}
 	public void setDealbrdno(Long dealbrdno) {

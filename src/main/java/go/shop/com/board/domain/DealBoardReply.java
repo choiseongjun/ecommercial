@@ -1,7 +1,9 @@
 package go.shop.com.board.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,7 +30,7 @@ public class DealBoardReply {
 	    private int redepth;
 	    @Column(name = "dealboardreply_reorder")
 	    private int reorder;
-		 @ManyToOne
+		 @ManyToOne(cascade = CascadeType.ALL  , fetch = FetchType.LAZY)
 		 @JoinColumn(name = "dealboard_seq")
 		 private DealBoard dealboard;
 		public Long getBrdreno() {

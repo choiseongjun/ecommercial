@@ -5,6 +5,9 @@ import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.logging.Logger;
 
+import javax.persistence.EntityManager;
+
+import org.hibernate.annotations.Cascade;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,30 +56,38 @@ public class JpaMappingTest {
 //			dealBoardReplyRepository.save(dealBoardReply);			
 //		}
 //	}
-	@Test
-	public void select() {
-		DealBoard dealBoard=new DealBoard();
-		int a=2;
-		long b=1L;
-		//List<DealBoard> dealboardlist=dealBoardRepository.findByjoinId(1L);
-		//List<DealBoard> dealboardlist1=dealBoardRepository.findAll();
-		//Optional<DealBoardFile> dealBoardfilelist=dealBoardFileRepository.findById(a);
-		//LOG.info(dealboardlist.toString());
-		//List<DealBoard> dealboardlist2=dealBoardRepository.findByboardAll();
-		
-		Optional<DealBoard> dealboardlist=dealBoardRepository.findById(1L);
-		
-		System.out.println(dealboardlist.toString());
-	
-		LOG.info(dealboardlist.toString());
-//		LOG.info(dealboardlist1.toString());
-//		LOG.info(dealboardlist2.toString());
-			
-
-	}
-
 //	@Test
-//	public void delete() {
-//		dealBoardRepository.deleteById(1L);
+//	public void select() {
+//		DealBoard dealBoard=new DealBoard();
+//		int a=2;
+//		long b=1L;
+//		//List<DealBoard> dealboardlist=dealBoardRepository.findByjoinId(1L);
+//		//List<DealBoard> dealboardlist1=dealBoardRepository.findAll();
+//		//Optional<DealBoardFile> dealBoardfilelist=dealBoardFileRepository.findById(a);
+//		//LOG.info(dealboardlist.toString());
+//		//List<DealBoard> dealboardlist2=dealBoardRepository.findByboardAll();
+//		
+//		Optional<DealBoard> dealboardlist=dealBoardRepository.findById(1L);
+//		
+//		System.out.println(dealboardlist.toString());
+//	
+//		LOG.info(dealboardlist.toString());
+////		LOG.info(dealboardlist1.toString());
+////		LOG.info(dealboardlist2.toString());
+//			
+//
 //	}
+
+	@Test
+	public void delete() {
+//		EntityManager entityManager;
+//		DealBoard dealboard=new DealBoard();
+//		entityManager.persist(dealboard);
+//		
+//		DealBoardFile dealboardfile=new DealBoardFile();
+//		dealboard.setDealbrdno(dealboard.getDealbrdno());
+//		entityManager.persist(dealboardfile);
+//		
+		dealBoardRepository.deleteById(3L);
+	}
 }

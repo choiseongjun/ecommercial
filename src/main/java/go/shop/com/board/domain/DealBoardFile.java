@@ -1,7 +1,9 @@
 package go.shop.com.board.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,7 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import go.shop.com.common.model.audit.DateAudit;
-import lombok.Data;
 
 /**
 * @author 최성준.
@@ -27,7 +28,7 @@ public class DealBoardFile extends DateAudit{
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 private Long fileno; //파일 시퀀..
 
-	 @ManyToOne
+	 @ManyToOne(cascade = CascadeType.ALL  , fetch = FetchType.LAZY)
 	 @JoinColumn(name = "dealboard_seq")
 	 private DealBoard dealboard;
 
