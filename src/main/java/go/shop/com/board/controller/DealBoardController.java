@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import go.shop.com.board.domain.DealBoard;
@@ -52,8 +54,6 @@ public class DealBoardController {
 	@GetMapping("/detail/{dealbrdno}")
 	public Object getSelectOneBoard(@PathVariable("dealbrdno") Long dealbrdno){
 		
-		System.out.println("경로 체크..!!@#@!#@!$@!$!@");
-		
 		Object dealboardlist=dealBoardRepository.findById(dealbrdno);
 		
 		LOG.info(dealboardlist.toString());
@@ -80,8 +80,8 @@ public class DealBoardController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-	@DeleteMapping(value="/delete/{dealboard.id}")
-	  public ResponseEntity<String> deleteUser(@PathVariable("dealbrdno") Long dealbrdno) {
+	@DeleteMapping(value="/delete/{dealboardno}")
+	  public ResponseEntity<String> deleteUser(@PathVariable("dealboardno") Long id) {
 		System.out.println("삭제 경로!!..");
 		try {
 	    	System.out.println("삭제 경로..");

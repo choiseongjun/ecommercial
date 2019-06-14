@@ -1,14 +1,12 @@
 import React,{ Component }  from 'react';
 import { selectone_dealBoard,deleteone_dealBoard } from '../../action/dealboardActions';
 import { connect } from 'react-redux';
-
+import axios from 'axios';
 
 class dealboarddetail extends Component{
     constructor(props){
       super(props);
 
-    
-   
     
     this.state = {
             dealbrdno : this.props.match.params.id
@@ -17,40 +15,34 @@ class dealboarddetail extends Component{
            ,brdtitle:''
 
         };
-        this.inputFormHandler = this.inputFormHandler.bind(this);
-        this.onbrdmemoChange = this.onbrdmemoChange.bind(this);
-    }
-   
-    inputFormHandler(e) {
-        console.log(e.target.value)
-        this.setState({ [e.target.name]: e.target.value })
-    };
-    onbrdmemoChange(e) {
-       
       
-        this.setState({ brdmemo: e.target.value });
-    }
-   
-    componentWillMount(){
-    
-        this.props.selectone_dealBoard(this.state.dealbrdno);
-    }
-    componentDidMount (){
-       
-       
-    }
-    handleClick = (e) => {
-        const dealbrdno=this.state.dealbrdno;
-        this.props.deleteone_dealBoard(parseInt(dealbrdno));
         
     }
+    handleClick = (e) => {
+        const dealboardno=this.state.dealbrdno;
+     
+       console.log(dealboardno)
+       this.props.deleteone_dealBoard(dealboardno);
+        // axios.delete('http://localhost:8080/dealboard/delete/' + parseInt(dealboard.dealbrdno))
+        //     .then(res => console.log(res.data))
+    }
+
+    
+   
+    
+    componentDidMount (){
+       
+        this.props.selectone_dealBoard(this.state.dealbrdno);
+    }
+  
+   
     render(){
         console.log('스테이트값..시작')
         console.log(this.state)
         console.log('스테이트값..종료')
         console.log(this.props.dealboard.dealboardone[0] == null ? null : this.props.dealboard.dealboardone[0].brdmemo)
         return(
-        <form className="form-horizontal" onSubmit={this.onSubmit}>
+      
             <div className="div-form">
                 <h2>글내용</h2>
                 <div className="form-group">
@@ -68,13 +60,12 @@ class dealboarddetail extends Component{
                 </div>
                 <div className="div-button">
                     <button type="submit" className="btn btn-primary" onClick={this._boardWrite}>글수정</button>
-                    <button
-                           onClick={this.handleClick}>
+                </div>
+                <button onClick={this.handleClick}>
                                                         글삭제
                     </button>
-                </div>
             </div>
-        </form>
+ 
         );
     }
 }
