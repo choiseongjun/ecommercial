@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ADD_DEALBOARD,LIST_DEALBOARD,SELECTONE_DEALBOARD,DELETEONE_DEALBOARD} from './types';
+import { ADD_DEALBOARD,LIST_DEALBOARD,SELECTONE_DEALBOARD,DELETEONE_DEALBOARD,UPDATE_DEALBOARD} from './types';
 
 export const adddealBoard = (dealBoard) => dispatch => {
   axios
@@ -30,7 +30,15 @@ function selectone_dealBoard (dealboard) {
         })
       )  
   }
-
+function update_dealBoard(dealboardno,dealboard) {
+    return (dispatch) => axios.post(`http://localhost:8080/dealboard/update/`+dealboardno,dealboard)
+    .then(oneitem =>
+      dispatch({
+        type: UPDATE_DEALBOARD, 
+        payload: oneitem.data,
+      })
+    )  
+  }
   export const deleteone_dealBoard = (dealboardno) => dispatch => {
     axios
       .delete('http://localhost:8080/dealboard/delete/'+dealboardno)
@@ -44,6 +52,7 @@ function selectone_dealBoard (dealboard) {
   export {
     list_dealBoard
     ,selectone_dealBoard
+    ,update_dealBoard
   }
   
   
