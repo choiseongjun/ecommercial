@@ -26,6 +26,7 @@ import go.shop.com.board.repository.DealBoardRepository;
 * @author 최성준.
 * @version 2019.06.04 v1.0
 * @Story 중고거래 게시판 단순 CRUD..
+* 로직 수정 필요!!! 비즈니스 로직->service
 */
 @RestController
 @RequestMapping("/dealboard")
@@ -66,15 +67,21 @@ public class DealBoardController {
 //		}
 	}
 	
+	/* 게시판 글 수정
+	 *로직 수정 필요..
+	 * */
 	@PostMapping("/update/{id}")
 	public ResponseEntity<DealBoard> updateDealBoard(@PathVariable("id") Long id,@RequestBody DealBoard DealBoard){
 	
+	
 		Optional<DealBoard> DealBoardData=dealBoardRepository.findById(id);
 		if(DealBoardData.isPresent()) {
+			System.out.println("!$U)$&#$IQUOU$#@)$&$#)$&#)$&#$&(");
 			DealBoard saveDealBoard=DealBoardData.get();
-			
-			DealBoard updateDealboard=dealBoardRepository.save(saveDealBoard);
-			return new ResponseEntity<>(updateDealboard,HttpStatus.OK);
+			System.out.println(saveDealBoard);
+			dealBoardRepository.save(DealBoard);
+			//System.out.println(updateDealboard);
+			return new ResponseEntity<>(HttpStatus.OK);
 		}else {
 			
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -82,7 +89,7 @@ public class DealBoardController {
 	}
 	@DeleteMapping(value="/delete/{dealboardno}")
 	  public ResponseEntity<String> deleteUser(@PathVariable("dealboardno") Long id) {
-		System.out.println("삭제 경로!!..");
+		
 		try {
 	    	System.out.println("삭제 경로..");
 	    //	dealBoardRepository.deleteById(dealbrdno);

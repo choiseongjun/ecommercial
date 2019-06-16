@@ -36,7 +36,7 @@ public class UserController {
 	}
 	@PostMapping("/updateUser/{user.id}")
 	public ResponseEntity<User> updateUser(@PathVariable("user.id") Long id, @RequestBody User user) {
-		System.out.println("Update User" + user);
+		
 		Optional<User> userData = userRepository.findById(id);
 		if (userData.isPresent()) {
 			User saveUser = userData.get();
