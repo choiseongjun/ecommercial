@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { list_dealBoard } from '../../action/dealboardActions';
 import dealboarddetail from './dealboarddetail';
 import { Link } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 class dealboardlist extends Component{
 constructor(props){
@@ -53,8 +54,7 @@ render() {
                     <td>{item.createdAt}</td>
                  </tr>})}
 
-           
-        </tbody><a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">작성하기</a>
+        </tbody><NavLink to="/dealboardwrite"><a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">작성하기</a></NavLink>
     </table>
     );
 

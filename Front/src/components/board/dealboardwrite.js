@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {adddealBoard}  from '../../action/dealboardActions';
 import { connect } from 'react-redux';
-
+import axios from 'axios';
 class dealboardwrite extends Component{
     constructor(props){
         super(props);
@@ -13,10 +13,36 @@ class dealboardwrite extends Component{
             brdtitle: '',
             brdmemo:'',
             brdwriter: this.props.currentUser.email,
-            brdhit:0
+            brdhit:0,
+            filename:'',
+            filesize:'',
+            fileType:''
         };
       
     }
+    _uploadFile = (e) => {
+        const uploadImgText = document.getElementById('uploadImgText');
+        const arrFiles       = document.getElementById('inputFile').files;
+        let   text          = "";
+       
+        for(let number = 0 ; number < arrFiles.length ; number++){
+          
+            console.log(arrFiles[number].name);
+            console.log(arrFiles[number].size);
+            console.log(arrFiles[number].type);
+            text = text + `<button type="button" class="btn_upload_file">${arrFiles[number].name} <i class="fa fa-close" data-size='${arrFiles[number].size}' onclick='${this._delete}'></i> </button>`;
+           
+        }
+       
+        uploadImgText.innerHTML=text;
+        let filename = e.target.files[0].name;
+        let fileType = e.target.files[0].type;
+        let filesize=e.target.files[0].size;
+        console.log("new~!!#")
+        // let reader=new FileReader();
+        // reader.readAsDataURL(file);
+        this.setState({ filename: filename, fileType: fileType,filesize:filesize })
+      }
     onbrdtitleChange(e){
         const brdtitle=e.target.value;
         this.setState(() => ({ brdtitle: brdtitle }));
@@ -28,17 +54,18 @@ class dealboardwrite extends Component{
     onSubmit = (e) => {
         e.preventDefault();
         const dealboard=this.state;
-    
-        console.log(dealboard);
-
-        if(dealboard.brdtitle == ""){
-            alert("제목을 작성하세요")
-        }else{
-            this.props.adddealBoard(dealboard);
+        const dealboardfile=this.state;
+     
+        axios.post('http://localhost:8080/dealboard/insertFile', dealboardfile)
+        .then(res => console.log(res.data))
+        // if(dealboard.brdtitle == ""){
+        //     alert("제목을 작성하세요")
+        // }else{
+        //     this.props.adddealBoard(dealboard);
   
-            //this.props.history.push('/dealboardlist');     
-            window.location.href = '/dealboardlist'; 
-        }
+        //     //this.props.history.push('/dealboardlist');     
+        //     window.location.href = '/dealboardlist'; 
+        // }
          
      
         // Add item via addItem action
@@ -71,6 +98,22 @@ class dealboardwrite extends Component{
                     <button type="submit" className="btn btn-primary" onClick={this._boardWrite}>Submit</button>
                 </div>
             </div>
+            <div className="form-group">
+                <div className=" col-sm-2">
+                  <div className="file-field pull_float_right">
+                    <div className="btn btn-outline-success btn-rounded waves-effect btn-sm float-left">
+                      <span>Choose file</span>
+                      <input type="file" id="inputFile" multiple onChange={this._uploadFile}/>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-sm-10">
+                  <div className="file-path-wrapper ">
+                    <div className="file-path validate" placeholder="Upload your image" ><div id="uploadImgText">이미지를 올려주세요.</div></div>
+                  </div>
+                </div>
+              </div>
+
         </form>
         );
     }
