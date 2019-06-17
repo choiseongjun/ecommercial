@@ -99,4 +99,12 @@ public class DealBoardController {
 	    return new ResponseEntity<>("dealBoard has been deleted!", HttpStatus.OK);
 	  }
 	
+	@PostMapping(value="/insertFile")
+	public DealBoardFile createDealBoardFile(@RequestBody DealBoardFile dealboardfile) {
+		System.out.println("경로 체크~@#!#@#");
+	 System.out.println(dealboardfile.toString());
+		dealBoardFileRepository.save(dealboardfile);
+		LOG.info(dealboardfile.toString());
+		return dealboardfile;
+	}
 }

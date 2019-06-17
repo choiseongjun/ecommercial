@@ -11,6 +11,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import go.shop.com.board.domain.DealBoardFile;
 import go.shop.com.product.domain.ProductImg;
 /**
 * @author 최성준 
@@ -24,9 +25,9 @@ public class FileUtil {
 	private final String rootPath 	= System.getProperty("user.dir");
 	private final String filePath = rootPath + "/Front/src/ImageFile";
 	
-    public List<ProductImg> saveAllFiles(List<MultipartFile> upfiles) throws IllegalStateException, IOException {
+    public List<DealBoardFile> saveAllFiles(List<MultipartFile> upfiles) throws IllegalStateException, IOException {
          
-        final List<ProductImg> filelist = new ArrayList<ProductImg>();
+        final List<DealBoardFile> filelist = new ArrayList<DealBoardFile>();
 
         for (MultipartFile uploadfile : upfiles ) {
             if (uploadfile.getSize() == 0) {
@@ -38,10 +39,10 @@ public class FileUtil {
             
             saveFile(uploadfile, filePath + "/" + folder + "/", newFileName);
             
-            ProductImg filedo = new ProductImg();
-            filedo.setOriginalFileName(uploadfile.getOriginalFilename());
-            filedo.setStoredFileName(newFileName);
-            filedo.setSize(uploadfile.getSize());
+            DealBoardFile filedo = new DealBoardFile();
+            filedo.setRealname(uploadfile.getOriginalFilename());
+            filedo.setFilename(newFileName);
+            filedo.setFilesize(uploadfile.getSize());
             filelist.add(filedo);
         }
         return filelist;

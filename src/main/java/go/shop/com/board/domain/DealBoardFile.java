@@ -1,5 +1,7 @@
 package go.shop.com.board.domain;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import go.shop.com.common.model.audit.DateAudit;
 
@@ -38,7 +42,7 @@ public class DealBoardFile extends DateAudit{
 	 private String realname;//실제이름..
 	 @Column(name = "dealboardfile_filesize")
 	 private long filesize;//사이즈..
-	 @Column(nullable = false, name = "dealboardfile_path")
+	 @Column(nullable = true, name = "dealboardfile_path")
 	 private String path;//경로..
 	 @Column(name = "dealboardfile_type")
 	 private String fileType;//파일타입..
@@ -48,6 +52,8 @@ public class DealBoardFile extends DateAudit{
 	public void setDealboard(DealBoard dealboard) {
 		this.dealboard = dealboard;
 	}
+	
+	
 	public String getFilename() {
 		return filename;
 	}

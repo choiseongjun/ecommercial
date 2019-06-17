@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import go.shop.com.common.model.audit.DateAudit;
 import lombok.Getter;
 import lombok.Setter;
@@ -46,6 +48,7 @@ public class DealBoard extends DateAudit{
 	 private String brddeleteflag;//寃뚯떆�뙋 �궘�젣�뿬遺�..
 	 @Column(name = "dealboard_filecnt")
 	 private String filecnt;//寃뚯떆�뙋 �뙆�씪移댁슫�듃..
+	 
 	 
 	 @OneToMany(mappedBy = "dealboard", orphanRemoval = true, cascade = CascadeType.PERSIST)
 	 private List<DealBoardFile> dealboardfile = new ArrayList<DealBoardFile>();
@@ -93,6 +96,8 @@ public class DealBoard extends DateAudit{
 	public void setFilecnt(String filecnt) {
 		this.filecnt = filecnt;
 	}
+	
+
 	public static Object builder() {
 
 		return null;
