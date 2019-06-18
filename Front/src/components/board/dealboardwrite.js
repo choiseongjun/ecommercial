@@ -38,6 +38,26 @@ class dealboardwrite extends Component{
         let filename = e.target.files[0].name;
         let fileType = e.target.files[0].type;
         let filesize=e.target.files[0].size;
+
+        const dealboardfile = new FormData();
+        dealboardfile.append('filename',e.target.files[0].name);
+        dealboardfile.append('fileType',e.target.files[0].type);
+        dealboardfile.append('filesize',e.target.files[0].size);
+       
+        axios({
+          method: 'post',
+          url: 'http://localhost:8080/dealboard/insertFile',
+          data: dealboardfile,
+          headers: { 'Content-Type': 'multipart/form-data' }
+          })
+          .then(function (response) {
+              //handle success
+              console.log(response);
+          })
+          .catch(function (response) {
+              //handle error
+              console.log(response);
+          });
         console.log("new~!!#")
         // let reader=new FileReader();
         // reader.readAsDataURL(file);
@@ -55,7 +75,7 @@ class dealboardwrite extends Component{
         e.preventDefault();
         const dealboard=this.state;
         const dealboardfile=this.state;
-     
+   
         axios.post('http://localhost:8080/dealboard/insertFile', dealboardfile)
         .then(res => console.log(res.data))
         // if(dealboard.brdtitle == ""){
@@ -79,7 +99,7 @@ class dealboardwrite extends Component{
     render(){
         
         return(
-        <form className="form-horizontal" onSubmit={this.onSubmit}>
+        <form className="form-horizontal" enctype="multipart/form-data" onSubmit={this.onSubmit}>
             <div className="div-form">
                 <h2>글쓰기</h2>
                 <div className="form-group">

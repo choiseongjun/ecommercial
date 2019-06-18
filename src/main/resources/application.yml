@@ -69,9 +69,13 @@ mail:
       auth: true
       
 ## MULTIPART (MultipartProperties)
-multipart:
-  enabled: true
-  location: 
-  max-file-size: 100Mb
-  max-request-size: 100Mb
-  file-size-threshold: 10Mb
+#multipart:
+#  enabled: true
+#  location: 
+#  max-file-size: 100Mb
+#  max-request-size: 100Mb
+#  file-size-threshold: 10Mb
+
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
