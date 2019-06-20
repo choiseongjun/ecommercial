@@ -3,6 +3,8 @@ package go.shop.com.common.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -27,7 +29,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     	localeChangeInterceptor.setParamName("lang");
     	return localeChangeInterceptor;
     }
-    
+  
  
     
     @Override

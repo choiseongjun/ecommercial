@@ -1,4 +1,5 @@
 spring:
+   
     datasource:
         url: jdbc:mariadb://e-com.ckzlr3hjcfba.ap-northeast-1.rds.amazonaws.com:3306/ecom
         username: estudy
@@ -68,14 +69,12 @@ mail:
       start-tls-enable: true 
       auth: true
       
-## MULTIPART (MultipartProperties)
-#multipart:
-#  enabled: true
-#  location: 
-#  max-file-size: 100Mb
-#  max-request-size: 100Mb
-#  file-size-threshold: 10Mb
-
-    multipart:
-      max-file-size: 50MB
-      max-request-size: 50MB
+# MULTIPART (MultipartProperties)
+multipart:
+  enabled: true
+  location: /Front/src/ImageFile
+  max-file-size: -1
+  max-request-size: -1
+  file-size-threshold: 10MB
+ 
+   

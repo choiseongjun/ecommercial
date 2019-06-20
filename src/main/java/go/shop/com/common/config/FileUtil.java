@@ -43,6 +43,8 @@ public class FileUtil {
             filedo.setRealname(uploadfile.getOriginalFilename());
             filedo.setFilename(newFileName);
             filedo.setFilesize(uploadfile.getSize());
+            System.out.println("파일유틸안.=#!#!@$214");
+            System.out.println(filedo);
             filelist.add(filedo);
         }
         return filelist;
