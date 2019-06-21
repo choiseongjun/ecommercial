@@ -27,7 +27,7 @@ class dealboardwrite extends Component{
     }
     uploadFileToServer(data){
       //returns Promise object
-      return service.getRestClient().post('/dealboard/files', data);
+      return service.getRestClient().post('/dealboard/insertFile', data);
   }
     handleUploadFile = (event) => {
       const data = new FormData();
