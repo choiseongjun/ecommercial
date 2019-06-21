@@ -14,7 +14,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.FileCopyUtils;
 
 import go.shop.com.common.MediaUtils;
-
+/**
+* @author 최성준 
+* @version 2019.06.21 v1.0
+* @Story  파일업로드 Class
+*/
 public class UploadFileUtils {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UploadFileUtils.class);

@@ -21,7 +21,11 @@ import go.shop.com.account.security.CurrentUser;
 import go.shop.com.account.security.UserPrincipal;
 
  
-
+/**
+* @author 최성준.
+* @version 2019.06.04 v1.0
+* @Story 사용자 회원가입 로그인
+*/
 @RestController
 public class UserController {
 

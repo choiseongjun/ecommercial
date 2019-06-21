@@ -35,10 +35,12 @@ import go.shop.com.common.config.UploadFileUtils;
 @RestController
 @RequestMapping("/dealboard")
 public class DealBoardController {
+	
 	@Autowired
 	DealBoardRepository dealBoardRepository;
 	@Autowired
 	DealBoardFileRepository dealBoardFileRepository;
+	
 	/*게시판 글쓰기  */
 	@PostMapping("/insert")
 	public DealBoard createDealBoard(@RequestBody DealBoard dealBoard) {
@@ -56,10 +58,8 @@ public class DealBoardController {
 	/*게시판 디테일 페이지 조회 */
 	@GetMapping("/detail/{dealbrdno}")
 	public Object getSelectOneBoard(@PathVariable("dealbrdno") Long dealbrdno){
-		
+
 		Object dealboardlist=dealBoardRepository.findById(dealbrdno);
-		
-		
 		return dealboardlist;
 //		if(dealboardlist.isPresent()) {
 //			return new ResponseEntity<>(HttpStatus.OK);
@@ -77,7 +77,6 @@ public class DealBoardController {
 	
 		Optional<DealBoard> DealBoardData=dealBoardRepository.findById(id);
 		if(DealBoardData.isPresent()) {
-			System.out.println("!$U)$&#$IQUOU$#@)$&$#)$&#)$&#$&(");
 			DealBoard saveDealBoard=DealBoardData.get();
 			System.out.println(saveDealBoard);
 			dealBoardRepository.save(DealBoard);
@@ -92,7 +91,6 @@ public class DealBoardController {
 	  public ResponseEntity<String> deleteUser(@PathVariable("dealboardno") Long id) {
 		
 		try {
-	    	System.out.println("삭제 경로..");
 	    //	dealBoardRepository.deleteById(dealbrdno);
 	    } catch (Exception e) {
 	      return new ResponseEntity<>("Fail to delete!", HttpStatus.EXPECTATION_FAILED);
@@ -100,36 +98,4 @@ public class DealBoardController {
 	    return new ResponseEntity<>("dealBoard has been deleted!", HttpStatus.OK);
 	  }
 	
-
-//	@RequestMapping(value="/insertFile",method=RequestMethod.POST,consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
-//	public ResponseEntity<Object> createDealBoardFile(@RequestParam("uploadFile") MultipartFile dealboardfile,MultipartHttpServletRequest request) throws IllegalStateException, IOException {
-//		System.out.println("경로 체크~@#!#@#");
-//		
-//		File converFile=new File(dealboardfile.getOriginalFilename());
-//	 tempboard tmpb=new tempboard();
-//	 FileUtil fs = new FileUtil();
-//
-//		List<DealBoardFile> filelist = fs.saveAllFiles(tmpb.getUploadfile());
-//		//dealBoardFileRepository.save(dealboardfile);
-//		System.out.println(filelist);
-//		LOG.info(dealboardfile.toString());
-//		 return new ResponseEntity<>("dealBoard has been deleted!", HttpStatus.OK);
-//	}
-//	@RequestMapping(path = "/insertFile", method = RequestMethod.POST,
-//	        consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-//	public @ResponseBody ResponseEntity<String> add(@RequestParam("formData") MultipartFile file) {
-//	    System.out.println(file.getOriginalFilename());
-//	    return new ResponseEntity<>("Created", HttpStatus.OK);
-//	}
-	
-	Logger logger = LoggerFactory.getLogger(this.getClass());
-	private final String rootPath 	= System.getProperty("user.dir");
-	private final String uploadPath = rootPath + "/Front/src/ImageFile";
-	   @RequestMapping(path = "/insertFile",method = RequestMethod.POST)
-	    public ResponseEntity<String>  handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException, Exception {
-		   logger.info("originalName:" + file.getOriginalFilename());
-			logger.info("size:" + file.getSize());
-			logger.info("contentType:" + file.getContentType());
-			return new ResponseEntity<>(UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()), HttpStatus.CREATED);
-	   } 
 }
