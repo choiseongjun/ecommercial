@@ -1,11 +1,11 @@
 package go.shop.com.board.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Logger;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import go.shop.com.board.domain.DealBoard;
 import go.shop.com.board.repository.DealBoardFileRepository;
 import go.shop.com.board.repository.DealBoardRepository;
+import go.shop.com.common.config.UploadFileUtils;
 /**
 * @author 최성준.
 * @version 2019.06.04 v1.0
@@ -34,7 +35,6 @@ import go.shop.com.board.repository.DealBoardRepository;
 @RestController
 @RequestMapping("/dealboard")
 public class DealBoardController {
-	  private final static Logger LOG = Logger.getGlobal();
 	@Autowired
 	DealBoardRepository dealBoardRepository;
 	@Autowired
@@ -43,7 +43,6 @@ public class DealBoardController {
 	@PostMapping("/insert")
 	public DealBoard createDealBoard(@RequestBody DealBoard dealBoard) {
 		dealBoardRepository.save(dealBoard);
-		LOG.info(dealBoard.toString());
 		return dealBoard;
 	}
 	/*게시판 리스 페이지 조회 */
@@ -60,7 +59,6 @@ public class DealBoardController {
 		
 		Object dealboardlist=dealBoardRepository.findById(dealbrdno);
 		
-		LOG.info(dealboardlist.toString());
 		
 		return dealboardlist;
 //		if(dealboardlist.isPresent()) {
@@ -117,27 +115,21 @@ public class DealBoardController {
 //		LOG.info(dealboardfile.toString());
 //		 return new ResponseEntity<>("dealBoard has been deleted!", HttpStatus.OK);
 //	}
-	@RequestMapping(path = "/insertFile", method = RequestMethod.POST,
-	        consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-	public @ResponseBody ResponseEntity<String> add(@RequestParam("formData") MultipartFile file) {
-	    System.out.println(file.getOriginalFilename());
-	    return new ResponseEntity<>("Created", HttpStatus.OK);
-	}
+//	@RequestMapping(path = "/insertFile", method = RequestMethod.POST,
+//	        consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+//	public @ResponseBody ResponseEntity<String> add(@RequestParam("formData") MultipartFile file) {
+//	    System.out.println(file.getOriginalFilename());
+//	    return new ResponseEntity<>("Created", HttpStatus.OK);
+//	}
+	
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 	private final String rootPath 	= System.getProperty("user.dir");
-	private final String filePath = rootPath + "/Front/src/ImageFile";
-	   @RequestMapping(path = "/files",method = RequestMethod.POST)
-	    public ResponseEntity  handleFileUpload(@RequestParam("file") MultipartFile file) {
-	        try {
-	            System.out.printf("File name=%s, size=%s\n", file.getOriginalFilename(),file.getSize());
-	            //creating a new file in some local directory
-	            File fileToSave = new File(filePath + file.getOriginalFilename());
-	            //copy file content from received file to new local file
-	            file.transferTo(fileToSave);
-	        } catch (IOException ioe) {
-	            //if something went bad, we need to inform client about it
-	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-	        }
-	        //everything was OK, return HTTP OK status (200) to the client
-	        return ResponseEntity.ok().build();
-	    }
+	private final String uploadPath = rootPath + "/Front/src/ImageFile";
+	   @RequestMapping(path = "/insertFile",method = RequestMethod.POST)
+	    public ResponseEntity<String>  handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException, Exception {
+		   logger.info("originalName:" + file.getOriginalFilename());
+			logger.info("size:" + file.getSize());
+			logger.info("contentType:" + file.getContentType());
+			return new ResponseEntity<>(UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()), HttpStatus.CREATED);
+	   } 
 }
