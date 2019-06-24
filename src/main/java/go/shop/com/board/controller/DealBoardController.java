@@ -43,7 +43,7 @@ public class DealBoardController {
 	
 	/*게시판 글쓰기  */
 	@PostMapping("/insert")
-	public DealBoard createDealBoard(@RequestBody DealBoard dealBoard) {
+	public DealBoard createDealBoard(@RequestBody DealBoard dealBoard) throws IOException, Exception {
 		dealBoardRepository.save(dealBoard);
 		return dealBoard;
 	}
@@ -97,5 +97,17 @@ public class DealBoardController {
 	    }
 	    return new ResponseEntity<>("dealBoard has been deleted!", HttpStatus.OK);
 	  }
+	Logger logger = LoggerFactory.getLogger(this.getClass());
+	private final String rootPath 	= System.getProperty("user.dir");
+	private final String uploadPath = rootPath + "/Front/src/ImageFile";
 	
+	/*파일첨부*/
+	@RequestMapping(path = "/insertFile",method = RequestMethod.POST)
+	    public ResponseEntity<String>  handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException, Exception {
+			logger.info("Files"+file);
+			logger.info("originalName:" + file.getOriginalFilename());
+			logger.info("size:" + file.getSize());
+			logger.info("contentType:" + file.getContentType());
+			return new ResponseEntity<>(UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()), HttpStatus.CREATED);
+	   } 
 }

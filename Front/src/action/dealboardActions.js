@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { ADD_DEALBOARD,LIST_DEALBOARD,SELECTONE_DEALBOARD,DELETEONE_DEALBOARD,UPDATE_DEALBOARD} from './types';
 
-export const adddealBoard = (dealBoard) => dispatch => {
+export const adddealBoard = (dealBoard,data) => dispatch => {
   axios
-    .post('http://localhost:8080/dealboard/insert',dealBoard)
+    .post('http://localhost:8080/dealboard/insert',dealBoard,data)
     .then(res =>
       dispatch({
         type: ADD_DEALBOARD,
