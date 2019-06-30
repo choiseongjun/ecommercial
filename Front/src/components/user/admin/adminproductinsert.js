@@ -3,26 +3,15 @@ import './adminproductinsert.css';
 import { connect } from 'react-redux';
 import { addProduct } from '../../../action/productActions';
 
+
 class adminproductinsert extends Component{
   constructor(props){
       super(props);
-      console.log(props);
+    
       this.onbikeNameChange = this.onbikeNameChange.bind(this);
-      this.onbikeCcChange=this.onbikeCcChange.bind(this);
-      this.onbikeBrandChange=this.onbikeBrandChange.bind(this);
-      this.onbikeOrigPriceChange=this.onbikeOrigPriceChange.bind(this);
-      this.onbikeCtryChange=this.onbikeCtryChange.bind(this);
-      this.onbikeKindChange=this.onbikeKindChange.bind(this);
-      this.onbikeBoreChange=this.onbikeBoreChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
          this.state = {
-            bikeName: '',
-            bikeCc:'',
-            bikeBrand:'',
-            bikeOrigPrice:'',
-            bikeCtry:'',
-            bikeKind:'',
-            bikeBore:''
+            bikeName: ''
  
         };
   }
@@ -42,48 +31,21 @@ class adminproductinsert extends Component{
   }
   onbikeNameChange(e) {
         const bikeName = e.target.value;
-      
         this.setState(() => ({ bikeName: bikeName }));
     }
-  onbikeCcChange(e) {
-      const bikeCc = e.target.value;
-    
-      this.setState(() => ({ bikeCc: bikeCc }));
-  }
-  onbikeBrandChange(e) {
-    const bikeBrand = e.target.value;
-  
-    this.setState(() => ({ bikeBrand: bikeBrand }));
-}
-onbikeOrigPriceChange(e) {
-  const bikeOrigPrice = e.target.value;
-
-  this.setState(() => ({ bikeOrigPrice: bikeOrigPrice }));
-}
-onbikeCtryChange(e){
-  const bikeCtry=e.target.value;
-
-  this.setState(() => ({ bikeCtry: bikeCtry }));
-}
-onbikeKindChange(e){
-  const bikeKind=e.target.value;
-  this.setState(() => ({ bikeKind: bikeKind }));
-}
-onbikeBoreChange(e){
-  const bikeBore=e.target.value;
-  this.setState(() => ({ bikeBore: bikeBore }));
-}
   _delete(){
     // 어케 삭제하지...? 흠....... 고민좀.
     console.log("aaaaa");
   }
+
   onSubmit = (e) => {
     e.preventDefault();
     const product=this.state;
+    
+    console.log(this.props.state.products);
 
-    console.log(product);
+    
     this.props.addProduct(product);
-
     // Add item via addItem action
 
 
@@ -92,7 +54,10 @@ onbikeBoreChange(e){
   }
 
   render(){
+    const {product} = this.props.product;
+    
     return(
+     
 
       <React.Fragment>
         <div className="ibox float-e-margins">
@@ -107,29 +72,19 @@ onbikeBoreChange(e){
                   value={this.state.bikeName}
                     onChange={this.onbikeNameChange}/></div>
                 <label className="col-sm-2 control-label">배기량</label>
-                <div className="col-sm-4"><input type="text" className="form-control" name="bikeCc"
-                value={this.state.bikeCc}
-                onChange={this.onbikeCcChange} /></div>
+                <div className="col-sm-4"><input type="text" className="form-control" name="bikeCc"/></div>
               </div>
               
               <div className="form-group"><label className="col-sm-2 control-label">출시가</label>
-                <div className="col-sm-4"><input type="number" className="form-control" name="bikeOrigPrice" 
-                value={this.state.bikeOrigPrice}
-                onChange={this.onbikeOrigPriceChange}/></div>
+                <div className="col-sm-4"><input type="number" className="form-control" name="bikeOrigPrice" /></div>
                 <label className="col-sm-2 control-label">브랜드</label>
-                <div className="col-sm-4"><input type="text" className="form-control" name="bikeBrand" 
-                value={this.state.bikeBrand}
-                onChange={this.onbikeBrandChange}/></div>
+                <div className="col-sm-4"><input type="text" className="form-control" name="bikeBrand" /></div>
               </div>
               
               <div className="form-group"><label className="col-sm-2 control-label">제조사</label>
-                <div className="col-sm-4"><input type="text" className="form-control" name="bikeCtry" 
-                value={this.state.bikeCtry}
-                onChange={this.onbikeCtryChange} /></div>
+                <div className="col-sm-4"><input type="text" className="form-control" name="bikeCtry"/></div>
                 <label className="col-lg-2 control-label">장르</label>
-                <div className="col-lg-4"><input type="text" className="form-control" name="bikeKind"
-                value={this.state.bikeKind}
-                onChange={this.onbikeKindChange}/></div>
+                <div className="col-lg-4"><input type="text" className="form-control" name="bikeKind"/></div>
               </div>
               
               <div className="hr-line-dashed" />
@@ -140,9 +95,7 @@ onbikeBoreChange(e){
 
               <input type="hidden" name="bikeSeq" />
               <div className="form-group"><label className="col-sm-2 control-label">BORE?</label>
-                <div className="col-sm-4"><input type="text" className="form-control" name="bikeBore" 
-                value={this.state.bikeBore}
-                onChange={this.onbikeBoreChange}/></div>
+                <div className="col-sm-4"><input type="text" className="form-control" name="bikeInfoBore"/></div>
                 <label className="col-sm-2 control-label">COMPRESSION RATIO?</label>
                 <div className="col-sm-4"><input type="text" className="form-control" name="bikeInfoCompressionratio"/></div>
               </div>
@@ -200,7 +153,7 @@ onbikeBoreChange(e){
   }
 }
 const mapStateToProps = (state) => ({
-  product: state.product
+  products: state.products
 })
 
 export default connect(mapStateToProps, { addProduct })(adminproductinsert);

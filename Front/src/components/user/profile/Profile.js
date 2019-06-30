@@ -39,6 +39,7 @@ class Profile extends Component {
         let user = this.state
         console.log(user)
         console.log("files+++++++++")
+        // axios.post('http://localhost:8080/updateUser/' + user.id, user)
         axios.post('http://localhost:8080/updateUser/' + user.id, user)
             .then(res => console.log(res.data))
     }
@@ -61,7 +62,7 @@ class Profile extends Component {
                                 }
                             </div>
                             <div className="profile-name">
-                                {/* <h2>{this.props.currentUser.roles["0"].name == 'Admin' ? <NavLink to="adminproductinsert">상품 등록페이지로</NavLink> : ''}</h2> */}
+                                <h2>{this.props.currentUser.roles["0"].name == 'Admin' ? <NavLink to="adminproductinsert">상품 등록페이지로</NavLink> : ''}</h2>
                             </div>
                         </div>
                     </div>

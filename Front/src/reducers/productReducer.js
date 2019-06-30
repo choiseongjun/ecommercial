@@ -1,4 +1,4 @@
-import { ADD_PRODUCT,LIST_DEALBOARD} from '../action/types'
+import { ADD_PRODUCT} from '../action/types'
 
 const initialState = {
   products: [],
@@ -10,10 +10,10 @@ export default function(state = initialState, action) {
   
     case ADD_PRODUCT:
       return {
-        ...state,
-        products: [action.payload, ...state.products]
+        //...state,
+        products: [...action.payload]
       }
-   
+  
     default:
       return state;
   }
