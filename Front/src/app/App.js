@@ -3,16 +3,17 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
-import AppHeader from '../common/AppHeader';
-import Footer from '../common/Footer';
+import AppHeader from '../common/Containers/AppHeader';
+import Footer from '../common/Views/Footer';
+
 import Home from '../home/Home';
 import Login from '../components/user/login/Login';
 import Signup from '../components/user/signup/Signup';
-import dealboardlist  from '../components/board/dealboardlist'
+import board  from '../components/board/board'
 import Profile from '../components/user/profile/Profile';
 import OAuth2RedirectHandler from '../components/user/oauth2/OAuth2RedirectHandler';
-import NotFound from '../common/NotFound';
-import LoadingIndicator from '../common/LoadingIndicator';
+import NotFound from '../common/Views/NotFound';
+import LoadingIndicator from '../common/Views/LoadingIndicator';
 import { getCurrentUser } from '../util/APIUtils';
 import { ACCESS_TOKEN } from '../constants';
 import PrivateRoute from '../common/PrivateRoute';
@@ -26,14 +27,6 @@ import productdetail from '../components/product/productdetail';
 import chatroom from '../components/user/chat/chatroom';
 import userlist from '../components/user/chat/userlist';
 import usertimeline from '../components/user/chat/usertimeline';
-import dealboardwrite from '../components/board/dealboardwrite';
-import dealboarddetail from '../components/board/dealboarddetail';
-
-
-
-
-
-
 
 class App extends Component {
   constructor(props) {
@@ -48,11 +41,14 @@ class App extends Component {
     this.handleLogout = this.handleLogout.bind(this);
   }
 
+  //
   loadCurrentlyLoggedInUser() {
     this.setState({ 
       loading: true
     });
 
+    // 현재 유저 정보 출력
+    // Store 관리 대상
     getCurrentUser()
     .then(response => {
       this.setState({
@@ -67,6 +63,7 @@ class App extends Component {
     });    
   }
 
+  //Logout 처리 함수
   handleLogout() {
     localStorage.removeItem(ACCESS_TOKEN);
     this.setState({
@@ -100,17 +97,14 @@ class App extends Component {
                   render={(props) => <Login authenticated={this.state.authenticated} {...props} />}></Route>
                 <Route path="/signup"
                   render={(props) => <Signup authenticated={this.state.authenticated} {...props} />}></Route>
-                <Route path="/dealboardlist" component={dealboardlist}></Route>
+                <Route path="/board" component={board}></Route>
                 <Route path="/productlist" component={productlist}></Route>
                 <Route path="/productdetail" component={productdetail}></Route>
                 <Route path="/adminproductinsert" component={adminproductinsert}></Route>
                 <Route path="/chatroom" component={chatroom}></Route>
                 <Route path="/userlist" component={userlist}></Route>
                 <Route path="/usertimeline" component={usertimeline}></Route>
-                <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route> 
-                <PrivateRoute path="/dealboardwrite" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
-                 component={dealboardwrite}>></PrivateRoute> 
-                <Route path="/dealboarddetail/:id" component={dealboarddetail}></Route> 
+                <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>  
                 <Route component={NotFound}></Route>
               </Switch>
             </div>

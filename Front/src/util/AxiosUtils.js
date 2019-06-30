@@ -19,7 +19,7 @@ import objectUtils from './ObjectUtils';
 
 /** 서버측 경로를 설정 한다.*/
 const host       = 'http://localhost';
-const port       = '8080'
+const port       = '9090'       //routing to JSON Server
 
 const serverHTTP = host+':'+port;
 
@@ -168,4 +168,4 @@ const request = function(options) {
             .catch(onError);
 }
 
-export default axiosUtils;
+//export default axiosUtils;
